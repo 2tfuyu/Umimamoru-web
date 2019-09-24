@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <BeachMenu />
+    <Title />
+    <Occurring />
+    <WaveState />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  import BeachMenu from "@/components/BeachMenu";
+  import Title from "@/components/Title";
+  import Occurring from "@/components/Occurring";
+  import WaveState from "@/components/WaveState";
+  export default {
+    name: 'app',
+    components: {
+      BeachMenu,
+      Title,
+      Occurring,
+      WaveState
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    position: initial;
+    padding: 0;
+    margin: 0;
+    width: 83%;
+    height: 300px;
+    background: #FDFCF1;
+  }
 </style>

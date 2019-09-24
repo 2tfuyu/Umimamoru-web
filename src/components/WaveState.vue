@@ -1,15 +1,28 @@
 <template>
     <div>
         <div class="state">
-        <p>海流の様子</p>
+        <p> 海流の様子</p>
     </div>
         <div class="wave_speed" id="fast">速い</div>
         <div class="wave_speed" id="usually">普通</div>
         <div class="wave_speed" id="slow">穏やか</div>
 
         <ul>
-            <li class="pole">1番モジュール</li>
-            <li class="pole">2番モジュール</li>
+            <div class="module">
+                <li class="pole">1番モジュール</li>
+                <div class="info">
+                    <p>流速 ： 0.6m/s</p>
+                    <p>今月の離岸流発生回数 : 2回</p>
+                </div>
+            </div>
+
+            <div class="module">
+                <li class="pole">2番モジュール</li>
+                <div class="info">
+                    <p>流速 ： 1.3m/s</p>
+                    <p>今月の離岸流発生回数 : 2回</p>
+                </div>
+            </div>
         </ul>
 
     </div>
@@ -23,6 +36,12 @@
 </script>
 
 <style scoped>
+
+    .info{
+        margin-left: 35%;
+        font-size: 20px;
+    }
+
     .state{
         float: left;
         text-align: center;
@@ -80,7 +99,6 @@
         font-size: 25px;
         color: #5b9a92;
     }
-
 
     .pole::before{
         border-radius: 50%; /*丸くする*/

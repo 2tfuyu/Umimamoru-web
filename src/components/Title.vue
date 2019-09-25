@@ -2,7 +2,7 @@
     <div>
 
         <div class="set">
-            <img src="../assets/umimamoru.png" class="logo" align="middle">
+            <img src="../assets/umimamoru.png" class="logo" align="middle" width="350" height="100">
             -離岸流事故防止システム-
         </div>
 

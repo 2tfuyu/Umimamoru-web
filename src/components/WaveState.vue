@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 <template>
     <div>
         <div class="state">
@@ -8,7 +10,7 @@
         <div class="wave_speed" id="slow">穏やか</div>
 
         <ul>
-            <div class="module">
+            <div class="module" @click="$emit('open')">
                 <li class="pole">1番モジュール</li>
                 <div class="info">
                     <p>流速 ： 0.6m/s</p>
@@ -24,16 +26,8 @@
                 </div>
             </div>
         </ul>
-
     </div>
-
 </template>
-
-<script>
-    export default {
-        name: "WaveState"
-    }
-</script>
 
 <style scoped>
 

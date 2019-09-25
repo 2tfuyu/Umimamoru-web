@@ -7,11 +7,20 @@
     <WaveState @open="openModal" />
     <Modal @close="closeModal"  v-if="modal">
       <GmapMap
-        :center="{lat:10, lng:10}"
-        :zoom="7"
+        :center="center"
+        :zoom="zoom"
         map-type-id="terrain"
         style="width: 500px; height: 300px"
       >
+        <GmapMarker v-for="(m,id) in marker_items"
+          :position="m.position"
+          :title="m.title"
+          :clickable="true" 
+          :draggable="false" 
+          :key="id"
+          :icon="m.icon"
+          >
+        </GmapMarker>
       </GmapMap>
     </Modal>
     
@@ -30,7 +39,7 @@
 
   Vue.use(VueGoogleMaps, {
     load: {
-      key: 'AIzaSyB_3Nt_qhA1P5uttxA4K5LCy62dcEuJ0OY'
+      key: 'AIzaSyCfNJEuxsE-YjCjk-iDw_ZNacrb1iHkXQ4'
     }
   });
 
@@ -45,7 +54,39 @@
     },
     data() {
       return {
-        modal: false
+        modal: false,
+        center: {lat: 26.5120833, lng: 128.0282313},
+        zoom: 14,
+        marker_items: [
+          {
+            position: {lat: 26.511621, lng: 128.028338},
+            title: 'モジュール1\n流速: 0.8m/s 発生回数: 4',
+            icon: {
+              url: 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000'
+            }
+          },
+          {
+            position: {lat: 26.511614, lng: 128.028475},
+            title: 'モジュール2',
+            icon: {
+              url: 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00'
+            }
+          },
+          {
+            position: {lat: 26.511605, lng: 128.028586},
+            title: 'モジュール3',
+            icon: {
+              url: 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF'
+            }
+          },
+          {
+            position: {lat: 26.511601, lng: 128.028697},
+            title: 'モジュール4',
+            icon: {
+              url: 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF'
+            }
+          }
+        ]
       }
     },
     methods: {

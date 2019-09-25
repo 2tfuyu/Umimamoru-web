@@ -3,8 +3,8 @@
 <template>
     <div>
         <div class="state">
-        <p> 海流の様子</p>
-    </div>
+          <p> 海流の様子</p>
+        </div>
         <div class="wave_speed" id="fast">速い</div>
         <div class="wave_speed" id="usually">普通</div>
         <div class="wave_speed" id="slow">穏やか</div>
@@ -32,8 +32,19 @@
 <style scoped>
 
     .info{
-        margin-left: 35%;
+        margin-left: 5%;
         font-size: 20px;
+    }
+
+    .pole{
+        clear: left;
+        margin-left: 5%;
+        margin-bottom: 20px;
+        list-style-type: none;
+        position: relative;
+        padding-left: 0.6em;
+        font-size: 25px;
+        color: #5b9a92;
     }
 
     .state{
@@ -49,6 +60,22 @@
         border: solid 2px #4CBBB4;/*線*/
         border-radius: 4px;/*角の丸み*/
         width: 25%;
+        box-shadow: 2px 2px 4px gray;
+    }
+
+    .module{
+        float: left;
+        text-align: left;
+        margin-left: 35%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        font-weight: normal;
+        font-size: 17px;
+        color: #4CBBB4;/*文字色*/
+        background: #FDFCF1;
+        border: solid 2px #4CBBB4;/*線*/
+        border-radius: 4px;/*角の丸み*/
+        width: 70%;
         box-shadow: 2px 2px 4px gray;
     }
 
@@ -81,17 +108,6 @@
 
     #slow.wave_speed::before{
         background-color: #4cbbb4;
-    }
-
-    .pole{
-        clear: left;
-        margin-left: 35%;
-        margin-bottom: 20px;
-        list-style-type: none;
-        position: relative;
-        padding-left: 0.6em;
-        font-size: 25px;
-        color: #5b9a92;
     }
 
     .pole::before{

@@ -8,6 +8,7 @@
                 </p>
                 <hr>
                 <h3>検索する</h3>
+                <span>都道府県: {{ selected }}</span>
                 <label>
                     <select v-model="selected" class="span">
                         <option value="">沖縄県</option>
@@ -16,7 +17,8 @@
                         <option>C</option>
                     </select>
                 </label>
-                <span>都道府県: {{ selected }}</span>
+                <br>
+                <span>ビーチ名: {{ selected }}</span>
                 <label>
                     <select v-model="selected" class="span">
                         <option value="">シーグラスビーチ</option>
@@ -25,7 +27,6 @@
                         <option>C</option>
                     </select>
                 </label>
-                <span>ビーチ名: {{ selected }}</span>
                 <hr>
                 <h3>検索結果</h3>
 

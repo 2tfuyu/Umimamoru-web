@@ -2,19 +2,18 @@
     <div class="occurring">
         <ul>
             <li class="box_small" id="left">
-                <p>離岸流の発生</p>
-                <div class="image">
-                    <h3>離岸流が発生しています</h3>
-                    発生地点で警告音が鳴っています<br>
-                    十分に警戒してください
-                </div>
+				<p>離岸流の発生</p>
+				<div class="image"  v-show="danger">
+					<h3>離岸流が発生しています</h3>
+					発生地点で警告音が鳴っています<br>
+					十分に警戒してください
+				</div>
             </li>
             <li class="box_small" id="right">
                 <p>離岸流の発生場所</p>
                 <div class="occur_place">
                     <ul type="disc" class="ul">
-                        <li><span>4番ポール</span></li>
-                        <li><span>5番ポール</span></li>
+                        <li v-for="(pole, index) in poles" :key="index"><span>{{pole}}番ポール</span></li>
                     </ul>
                 </div>
             </li>
@@ -26,17 +25,21 @@
 </template>
 
 <script>
-    import AssetsImage from "@/assets/warning.png";
-    export default {
-        name: "Occurring",
-        data() {
-            return {
-                assetsImage: AssetsImage,
-                assetsImage_NG: "../assets/warning.png",
-                staticImage: "/warning.png"
-            };
-        }
-    }
+import AssetsImage from "@/assets/warning.png";
+export default {
+	name: "Occurring",
+	props: {
+		danger: Boolean,
+		poles: Array,
+	},
+	data() {
+		return {
+			assetsImage: AssetsImage,
+			assetsImage_NG: "../assets/warning.png",
+			staticImage: "/warning.png"
+		};
+	}
+};
 </script>
 
 <style scoped>

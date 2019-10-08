@@ -8,32 +8,29 @@
                 </p>
                 <hr>
                 <h3>検索する</h3>
-                <span>都道府県: {{ selected }}</span>
+                <span>都道府県:</span>
                 <label>
-                    <select v-model="selected" class="span">
-                        <option value="">沖縄県</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select>
+                <select name="pref" v-model="selectedPref" v-on:change="changePref">
+                    <option v-for="(pref, id) in prefs" v-bind:key="id">
+                        {{ pref.name }}
+                    </option>
+                </select>
                 </label>
                 <br>
-                <span>ビーチ名: {{ selected }}</span>
+                <span>ビーチ名:</span>
                 <label>
-                    <select v-model="selected" class="span">
-                        <option value="">シーグラスビーチ</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select>
+                    <select name="beach" v-model="selectedBeach" v-on:change="changeBeach">
+                    <option v-for="(beach, id) in beaches" v-bind:key="id">
+                        {{ beach.beach }}
+                    </option>
+                </select>
                 </label>
                 <hr>
                 <h3>検索結果</h3>
-
                 <p>
                     <img src="../assets/oyogu_people.png" class="oyoguhito_small" align="bottom">
-                    シーグラスビーチ
-                    <span class="title">沖縄県名護市豊原</span>
+                    {{selectedBeach}}
+                    <span class="title">{{selectedPref}}{{city}}{{ward}}</span>
                 </p>
             </div>
         </header>
@@ -41,17 +38,49 @@
 </template>
 
 <script>
-    import AssetsImage from "@/assets/oyogu_people.png";
-    export default {
-        name: "BeachMenu",
-        data() {
-            return {
-                assetsImage: AssetsImage,
-                assetsImage_NG: "../assets/oyogu_people.png",
-                staticImage: "/oyogu_people.png"
-            };
-        }
-    }
+import axios from "axios";
+import AssetsImage from "@/assets/oyogu_people.png";
+export default {
+	name: "BeachMenu",
+	props:{
+		ward: String,
+		city: String
+	},
+	data() {
+		return {
+			assetsImage: AssetsImage,
+			assetsImage_NG: "../assets/oyogu_people.png",
+			staticImage: "/oyogu_people.png",
+			selectedPref: "",
+			selectedBeach: "",
+			prefs: [
+				{name:"沖縄県"}, {name:"宮崎県"}
+			],
+			beaches: [
+                    
+			],
+			onConnect: false
+		};
+	},
+	methods: {
+		changePref (){
+			axios.get("http://35.247.121.242:8080/Umimamoru/umimamoru/net/pref?pref=" + this.selectedPref)
+				.then(response => {
+					console.log(response);
+					// eslint-disable-next-line no-empty
+					//if(response.status != 200) {
+					//}else{
+					this.beaches = response.data;
+					//}
+				}
+				);
+		},
+		changeBeach (){
+			console.log(this.selectedBeach);
+			this.$emit("selectBeach", this.selectedBeach);
+		}
+	}
+};
 </script>
 
 <style scoped>

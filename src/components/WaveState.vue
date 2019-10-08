@@ -8,34 +8,38 @@
         <div class="wave_speed" id="fast">速い</div>
         <div class="wave_speed" id="usually">普通</div>
         <div class="wave_speed" id="slow">穏やか</div>
-
         <ul>
-            <div class="module" @click="$emit('open')">
-                <li class="pole">1番モジュール</li>
+            <li class="module" v-for="(mod, index) in flows" :key="index"
+			:style="{'--danger-color': mod.flow.tobank >= 1.6 ?'#ef8468' : mod.flow.tobank >= 0.8 ? '#92d050' : '#4cbbb4'}"
+			@click="$emit('open', mod.flow.loc)">
+                <p class="pole">{{mod.flow.loc}}番モジュール</p>
                 <div class="info">
-                    <p>流速 ： 0.6m/s</p>
-                    <p>今月の離岸流発生回数 : 2回</p>
+                    <p>流速 ： {{mod.flow.tobank}} m/s</p>
+                    <p>今月の離岸流発生回数 : {{mod.count}} 回</p>
                 </div>
-            </div>
-
-            <div class="module">
-                <li class="pole">2番モジュール</li>
-                <div class="info">
-                    <p>流速 ： 1.3m/s</p>
-                    <p>今月の離岸流発生回数 : 2回</p>
-                </div>
-            </div>
+            </li>
         </ul>
     </div>
 </template>
 
-<style scoped>
+<script>
+export default {
+	data(){
+		return{
+		};
+	},
+	props: {flows:Array}
+};
+</script>
 
+<style scoped>
+	ul {
+		list-style: none;
+	}
     .info{
         margin-left: 5%;
         font-size: 20px;
     }
-
     .pole{
         clear: left;
         margin-left: 5%;
@@ -44,7 +48,7 @@
         position: relative;
         padding-left: 0.6em;
         font-size: 25px;
-        color: #5b9a92;
+        color: black;
     }
 
     .state{
@@ -71,7 +75,7 @@
         margin-bottom: 25px;
         font-weight: normal;
         font-size: 17px;
-        color: #4CBBB4;/*文字色*/
+        color: black;/*文字色*/
         background: #FDFCF1;
         border: solid 2px #4CBBB4;/*線*/
         border-radius: 4px;/*角の丸み*/
@@ -119,6 +123,6 @@
         left: -30px; /*点の位置*/
         top: 4px; /*点の位置*/
         content: "";
-        background: #4cbbb4; /*点の色*/
+        background: var(--danger-color); /*点の色*/
     }
 </style>

@@ -6,15 +6,19 @@
             -離岸流事故防止システム-
         </div>
 
-        <p class="text">名護市</p>
-        <p class="text">シーサイドビーチ<span class="span">の様子</span></p>
+        <p class="text">{{city}}</p>
+        <p class="text">{{beach}}<span class="span">の様子</span></p>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "Title"
-    }
+export default {
+	name: "Title",
+	props: {
+		city: String,
+		beach: String
+	}
+};
 </script>
 
 <style scoped>

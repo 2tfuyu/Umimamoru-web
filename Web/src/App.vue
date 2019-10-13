@@ -22,7 +22,6 @@ import WaveState from "@/components/WaveState";
 import Modal from "@/components/Modal";
 import MapG from "@/components/MapG";
 import axios from "axios";
-import { clearInterval } from "timers";
   
 export default {
 	name: "app",
@@ -102,7 +101,11 @@ export default {
 				);
 		},
 		getFlow(){
-			if (! this.interval) clearInterval(this.interval);
+			console.log(this.interval);
+			if (this.interval != null && this.interval != undefined){
+				clearInterval(this.interval);
+				this.interval = null;
+			}
 			var net = this.network.net;
 			console.log(net);
 			var func = function(vue){
@@ -120,11 +123,11 @@ export default {
 									if(vue.modules[j].loc == flow.flow.loc) mod = vue.modules[j];
 								}
 								var color;
-								if(flow.flow.tobank >= 1.6){
+								if(flow.flow.flow >= 1.6 && (flow.flow.angle > Math.PI * 3 / 4 && flow.flow.angle < Math.PI * 5 / 4)){
 									vue.danger = true;
 									vue.poles.push(mod.pole);
 									color = "EF8468";
-								}else if (flow.flow.tobank >= 0.8){
+								}else if (flow.flow.flow >= 0.8 && (flow.flow.angle > Math.PI * 3 / 4 && flow.flow.angle< Math.PI * 5 / 4)){
 									color="92D050";
 								}else{
 									color = "4CBBB4";
@@ -152,6 +155,7 @@ export default {
 				axios.get("http://35.247.121.242:8080/Umimamoru/umimamoru/net/beach?beach=" + beach)
 					.then(response => {
 						if(response.status == 200) {
+							this.loading = false;
 							this.network = response.data[0];
 							this.center = {lat:this.network.latitude, lng:this.network.longitude};
 							this.getModule();

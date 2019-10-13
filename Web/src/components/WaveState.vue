@@ -10,11 +10,12 @@
         <div class="wave_speed" id="slow">穏やか</div>
         <ul>
             <li class="module" v-for="(mod, index) in flows" :key="index"
-			:style="{'--danger-color': mod.flow.tobank >= 1.6 ?'#ef8468' : mod.flow.tobank >= 0.8 ? '#92d050' : '#4cbbb4'}"
+			:style="{'--danger-color': mod.flow.flow >= 1.6 &&  (mod.flow.angle > Math.PI * 3 / 4 && mod.flow.angle < Math.PI * 5 / 4) ?'#ef8468' : mod.flow.flow >= 0.8 && (mod.flow.angle > Math.PI * 3 / 4 && mod.flow.angle < Math.PI * 5 / 4) ? '#92d050' : '#4cbbb4'}"
 			@click="$emit('open', mod.flow.loc)">
                 <p class="pole">{{mod.flow.loc}}番モジュール</p>
                 <div class="info">
-                    <p>流速 ： {{mod.flow.tobank}} m/s</p>
+                    <p>流速 ： {{mod.flow.flow}} m/s</p>
+                    <p>角度 ： {{mod.flow.angle * 180 / Math.PI}} °</p>
                     <p>今月の離岸流発生回数 : {{mod.count}} 回</p>
                 </div>
             </li>
